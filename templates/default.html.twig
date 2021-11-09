@@ -1,5 +1,11 @@
 {% extends 'partials/base.html.twig' %}
 
 {% block content %}
-    {{ page.content|raw }}
+	<section>
+		<div class="container">
+			<article>
+				{{ page.content|raw }}
+			</article>
+		</div>
+	</section>
 {% endblock %}
