@@ -1,14 +1,12 @@
 {% extends "partials/base.html.twig" %}
 
 {% block content %}
-	<section class="py-8">
+	<section>
 		<div class="container">
 			{% if page.collection is not empty %}
 				<div>
 					{% for p in page.collection %}
-						<pre>
-                        {{ dump(p.header) }}
-                    </pre>
+						{% set categories = p.taxonomy.category %}
 						<article>
 							{% if p.media.images is not empty %}
 								<figure>
@@ -21,7 +19,18 @@
 							<h2>
 								<a href="{{p.url}}" title="{{p.title|e}}">{{p.title|e}}</a>
 							</h2>
-							<time datetime="{{p.header.date|date('Y-m-d H:i a')}}">{{p.header.date|date('m/d/Y')}}</time>
+							<div>
+								<time datetime="{{p.date|date('Y-m-d H:i a')}}">{{p.date|date('m/d/Y')}}</time>
+								{% if categories %}
+									<p>
+										{% for category in categories %}
+											<span>{{category|e}}</span>
+										{% endfor %}
+									</p>
+								{% endif %}
+							</div>
+							{{p.summary|raw}}
+							<a href="{{p.url}}">Read</a>
 						</article>
 					{% endfor %}
 				</div>
