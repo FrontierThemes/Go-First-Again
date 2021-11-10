@@ -1,0 +1,31 @@
+{% set categories = p.taxonomy.category %}
+<article class="space-y-3">
+    {% if p.media.images is not empty %}
+        <a href="{{ p.url }}" title="{{ p.title|e }}" class="block aspect-w-4 aspect-h-3">
+            {{ p.media.images|first
+                .cropResize(600, 600)
+                .attribute('loading', 'lazy')
+                .attribute('alt', p.title|e)
+                .html(null, p.title, 'object-center object-cover transition-opacity duration-500 hover:opacity-80')|raw }}
+        </a>
+    {% endif %}
+    <div class="flex gap-3 text-sm">
+        <time datetime="{{ p.date|date('Y-m-d H:i a') }}">{{ p.date|nicetime }}</time>
+        {% if categories %}
+            <p class="relative before:absolute before:inline-block before:h-px before:w-10 before:bg-[#8b8b8b] pl-[3.25rem] before:left-0 before:top-[.625rem]">
+                {% for category in categories %}
+                {# TODO: link to category page. #}
+                <span>{{ category|e }}</span>
+                {% endfor %}
+            </p>
+        {% endif %}
+    </div>
+    <h2 class="text-2xl">
+        <a href="{{ p.url }}" title="{{ p.title|e }}" class="text-primary-500">{{ p.title|e }}</a>
+    </h2>
+    <div class="prose max-w-none">{{ p.summary|raw }}</div>
+    <a href="{{ p.url }}" title="Read more: {{ p.title|e }}" class="flex items-center gap-2 group">
+        <span>Read more</span>
+        {{ svg_image('theme://images/icon-arrow-right.svg', 'w-5 h-5 transition-all duration-500 group-hover:translate-x-2', true)|raw }}
+    </a>
+</article>

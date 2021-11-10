@@ -4,34 +4,9 @@
 	<section>
 		<div class="container">
 			{% if page.collection is not empty %}
-				<div>
+				<div class="grid gap-16 md:grid-cols-2 lg:grid-cols-3 md:gap-x-8 md:gap-y-16">
 					{% for p in page.collection %}
-						{% set categories = p.taxonomy.category %}
-						<article>
-							{% if p.media.images is not empty %}
-								<figure>
-									{{p.media.images|first
-                                        .cropResize(400, 400)
-                                        .attribute('loading', 'lazy')
-                                        .html(null, p.title)|raw}}
-								</figure>
-							{% endif %}
-							<h2>
-								<a href="{{p.url}}" title="{{p.title|e}}">{{p.title|e}}</a>
-							</h2>
-							<div>
-								<time datetime="{{p.date|date('Y-m-d H:i a')}}">{{p.date|date('m/d/Y')}}</time>
-								{% if categories %}
-									<p>
-										{% for category in categories %}
-											<span>{{category|e}}</span>
-										{% endfor %}
-									</p>
-								{% endif %}
-							</div>
-							{{p.summary|raw}}
-							<a href="{{p.url}}">Read</a>
-						</article>
+						{% include "partials/article.html.twig" %}
 					{% endfor %}
 				</div>
 			{% else %}

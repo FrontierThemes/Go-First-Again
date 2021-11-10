@@ -4,7 +4,7 @@
 
 @layer base {
     body {
-        @apply flex flex-col min-h-screen font-light font-display;
+        @apply flex flex-col min-h-screen font-light font-display text-primary-500;
     }
 
     main {
