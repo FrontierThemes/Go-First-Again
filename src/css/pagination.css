@@ -1,0 +1,7 @@
+.pagination {
+    @apply flex flex-wrap items-center justify-center m-0 text-lg text-primary-500;
+}
+
+.pagination li {
+    @apply border-none;
+}

@@ -19,6 +19,9 @@
 
 {% block stylesheets %}
     {% do assets.addCss('theme://dist/index.css') %}
+    {% if config.plugins.pagination.enabled and config.plugins.pagination.built_in_css %}
+        {% do assets.addCss('theme://dist/pagination.css', { priority: 10, loading: 'inline', position: 'after' }) %}
+    {% endif %}
 {% endblock %}
 
 {% block javascripts %}
