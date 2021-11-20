@@ -1,4 +1,4 @@
-{% set categories = p.taxonomy.category %}
+{% set tags = p.taxonomy.tag %}
 <article class="space-y-3">
     {% if p.media.images is not empty %}
         <a href="{{ p.url }}" title="{{ p.title|e }}" class="block aspect-w-4 aspect-h-3">
@@ -11,11 +11,10 @@
     {% endif %}
     <div class="flex gap-3 text-sm">
         <time datetime="{{ p.date|date('Y-m-d H:i a') }}">{{ p.date|nicetime }}</time>
-        {% if categories %}
-            <p class="relative before:absolute before:inline-block before:h-px before:w-10 before:bg-[#8b8b8b] pl-[3.25rem] before:left-0 before:top-[.625rem]">
-                {% for category in categories %}
-                {# TODO: link to category page. #}
-                <span>{{ category|e }}</span>
+        {% if tags %}
+            <p class="relative before:absolute before:inline-block before:h-px before:w-10 before:bg-[#8b8b8b] pl-[3.25rem] before:left-0 before:top-[.625rem] flex flex-wrap gap-4">
+                {% for tag in tags %}
+                    <a href="{{ base_url }}/tag{{ config.system.param_sep }}{{ tag }}">{{ tag|e }}</a>
                 {% endfor %}
             </p>
         {% endif %}
