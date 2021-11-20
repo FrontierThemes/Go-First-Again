@@ -9,10 +9,10 @@
                 .html(null, p.title, 'object-center object-cover transition-opacity duration-500 hover:opacity-80')|raw }}
         </a>
     {% endif %}
-    <div class="flex gap-3 text-sm">
-        <time datetime="{{ p.date|date('Y-m-d H:i a') }}">{{ p.date|nicetime }}</time>
+    <div class="flex gap-4 text-sm">
+        <time datetime="{{ p.date|date('Y-m-d H:i a') }}" class="flex-shrink-0">{{ p.date|nicetime }}</time>
         {% if tags %}
-            <p class="relative before:absolute before:inline-block before:h-px before:w-10 before:bg-[#8b8b8b] pl-[3.25rem] before:left-0 before:top-[.625rem] flex flex-wrap gap-4">
+            <p class="flex flex-wrap gap-4">
                 {% for tag in tags %}
                     <a href="{{ base_url }}/tag{{ config.system.param_sep }}{{ tag }}">{{ tag|e }}</a>
                 {% endfor %}

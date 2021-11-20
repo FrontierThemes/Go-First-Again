@@ -1,6 +1,21 @@
+{% set category = uri.param('category') %}
+{% set tag = uri.param('tag') %}
 {% extends "partials/base.html.twig" %}
 
 {% block content %}
+	{% if category or tag %}
+		<section class="pt-6 pb-12">
+			<div class="container">
+				<h1 class="text-3xl">
+					{% if category %}
+						<span>Category: {{ category|titleize|e }}</span>
+					{% elseif tag %}
+						<span>Tag: {{ tag|titleize|e }}</span>
+					{% endif %}
+				</h1>
+			</div>
+		</section>
+	{% endif %}
 	<section class="pb-6">
 		<div class="container">
 			{% if page.collection is not empty %}
