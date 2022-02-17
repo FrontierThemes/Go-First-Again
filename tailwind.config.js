@@ -1,12 +1,10 @@
-const colors = require( 'tailwindcss/colors' );
+const colors = require('tailwindcss/colors');
 
 module.exports = {
-    mode: 'jit',
-    purge: [
+    content: [
         './src/**/*.js',
         './templates/**/*.html.twig',
     ],
-    darkMode: false, // or 'media' or 'class'
     theme: {
         container: {
             center: true,
@@ -70,23 +68,20 @@ module.exports = {
         },
         extend: {
             fontFamily: {
-                display: [ '"Spectral"', 'serif' ],
-                heading: [ '"PT Sans"', 'sans-serif' ],
+                display: ['"Spectral"', 'serif'],
+                heading: ['"PT Sans"', 'sans-serif'],
             },
-            typography: ( theme ) => ( {
+            typography: (theme) => ({
                 DEFAULT: {
                     css: {
-                        color: theme( 'colors.primary.500' ),
+                        color: theme('colors.primary.500'),
                     },
                 },
-            } ),
+            }),
         },
     },
-    variants: {
-        extend: {},
-    },
     plugins: [
-        require( '@tailwindcss/typography' ),
-        require( '@tailwindcss/aspect-ratio' ),
+        require('@tailwindcss/typography'),
+        require('@tailwindcss/aspect-ratio'),
     ],
 }
