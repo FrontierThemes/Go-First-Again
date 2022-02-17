@@ -6,13 +6,18 @@
 	{% if category or tag %}
 		<section class="pt-6 pb-12">
 			<div class="container">
-				<h1 class="text-3xl">
-					{% if category %}
-						<span>Category: {{ category|titleize|e }}</span>
-					{% elseif tag %}
-						<span>Tag: {{ tag|titleize|e }}</span>
-					{% endif %}
-				</h1>
+				{% if category and not tag %}
+					<h1 class="text-3xl">Category: {{ category|titleize|e }}</h1>
+				{% endif %}
+
+				{% if tag and not category %}
+					<h1 class="text-3xl">Tag: {{ tag|titleize|e }}</h1>
+				{% endif %}
+
+				{% if category and tag %}
+					<h1 class="text-3xl">Category: {{ category|titleize|e }}</h1>
+					<h2 class="mt-2 text-xl">Tag: {{ tag|titleize|e }}</h2>
+				{% endif %}
 			</div>
 		</section>
 	{% endif %}
