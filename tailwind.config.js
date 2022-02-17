@@ -73,10 +73,20 @@ module.exports = {
                 display: [ '"Spectral"', 'serif' ],
                 heading: [ '"PT Sans"', 'sans-serif' ],
             },
+            typography: ( theme ) => ( {
+                DEFAULT: {
+                    css: {
+                        color: theme( 'colors.primary.500' ),
+                    },
+                },
+            } ),
         },
     },
     variants: {
         extend: {},
     },
-    plugins: [],
+    plugins: [
+        require( '@tailwindcss/typography' ),
+        require( '@tailwindcss/aspect-ratio' ),
+    ],
 }

@@ -5,7 +5,8 @@ const TerserPlugin = require( "terser-webpack-plugin" );
 
 module.exports = {
     entry: {
-        index: './src/index.js'
+        index: './src/index.js',
+        pagination: './src/pagination.js'
     },
     output: {
         path: path.resolve( __dirname, 'dist' ),

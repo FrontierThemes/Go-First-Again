@@ -1,0 +1,44 @@
+{% set category = uri.param('category') %}
+{% set tag = uri.param('tag') %}
+{% extends "partials/base.html.twig" %}
+
+{% block content %}
+	{% if category or tag %}
+		<section class="pt-6 pb-12">
+			<div class="container">
+				{% if category and not tag %}
+					<h1 class="text-3xl">Category: {{ category|titleize|e }}</h1>
+				{% endif %}
+
+				{% if tag and not category %}
+					<h1 class="text-3xl">Tag: {{ tag|titleize|e }}</h1>
+				{% endif %}
+
+				{% if category and tag %}
+					<h1 class="text-3xl">Category: {{ category|titleize|e }}</h1>
+					<h2 class="mt-2 text-xl">Tag: {{ tag|titleize|e }}</h2>
+				{% endif %}
+			</div>
+		</section>
+	{% endif %}
+	<section class="pb-6">
+		<div class="container">
+			{% if page.collection is not empty %}
+				<div class="grid gap-16 md:grid-cols-2 lg:grid-cols-3 md:gap-x-8 md:gap-y-16">
+					{% for p in page.collection %}
+						{% include "partials/article.html.twig" %}
+					{% endfor %}
+				</div>
+			{% else %}
+				<h1 class="text-3xl text-center md:text-4xl">There are no entries to show</h1>
+			{% endif %}
+		</div>
+	</section>
+	{% if config.plugins.pagination.enabled and page.collection.params.pagination %}
+		<section class="pt-6 pb-12">
+			<div class="container">
+				{% include "partials/pagination.html.twig" with { base_url: page.url, pagination: page.collection.params.pagination } %}
+			</div>
+		</section>
+	{% endif %}
+{% endblock %}
