@@ -1,0 +1,45 @@
+{% extends "partials/base.html.twig" %}
+
+{% block content %}
+	{% set tags = page.taxonomy.tag %}
+	{% set categories = page.taxonomy.category %}
+	<section class="py-6 lg:py-12">
+		<div class="container">
+			<article class="max-w-screen-md mx-auto">
+				<header>
+					<h1>{{ page.title|e }}</h1>
+					<time datetime="{{ page.date|date('Y-m-d H:i a') }}">
+						{{ page.date|date(config.dateformat.long) }}
+					</time>
+				</header>
+				<section class="prose max-w-none">
+					{{ page.content|raw }}
+				</section>
+				<footer>
+					{% if tags %}
+						<p>
+							<span>Tags:</span>
+							<span>
+								{% for tag in tags %}
+									<a href="{{ base_url }}/tag{{ config.system.param_sep }}{{ tag }}">{{ tag|e }}</a>
+								{% endfor %}
+							</span>
+						</p>
+					{% endif %}
+					{% if categories %}
+						<p>
+							<span>Categories:</span>
+							<span>
+								{% for category in categories %}
+									<a href="{{ base_url }}/category{{ config.system.param_sep }}{{ category }}">{{ category|e }}</a>
+								{% endfor %}
+							</span>
+						</p>
+					{% endif %}
+					<p>Written by &mdash;
+						{{ config.site.author.name }}</p>
+				</footer>
+			</article>
+		</div>
+	</section>
+{% endblock %}
