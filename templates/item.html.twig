@@ -5,17 +5,31 @@
 	{% set categories = page.taxonomy.category %}
 	<section class="py-6 lg:py-12">
 		<div class="container">
-			<article class="max-w-screen-md mx-auto">
-				<header>
-					<h1>{{ page.title|e }}</h1>
-					<time datetime="{{ page.date|date('Y-m-d H:i a') }}">
-						{{ page.date|date(config.dateformat.long) }}
-					</time>
+			<article class="space-y-6">
+				<header class="space-y-4 md:relative md:space-y-0">
+					{% if page.media.images is not empty %}
+						<figure class="md:aspect-w-16 md:aspect-h-9 md:w-3/4 md:ml-auto lg:aspect-h-7">
+							{{ page.media.images|first
+								.html(null, null, 'md:w-full md:h-full md:object-cover md:object-center')|raw }}
+						</figure>
+					{% endif %}
+					<div
+						{% if page.media.images is not empty %}
+							class="w-full space-y-1 md:absolute md:bottom-16 md:space-y-2 lg:space-y-4 md:w-1/2"	
+						{% else %}
+							class="space-y-1 md:space-y-2 lg:space-y-4"
+						{% endif %}
+					>
+						<h1 class="text-3xl md:text-5xl lg:text-6xl">{{ page.title|e }}</h1>
+						<time class="block text-sm md:text-base" datetime="{{ page.date|date('Y-m-d H:i a') }}">
+							{{ page.date|date(config.dateformat.long) }}
+						</time>
+					</div>
 				</header>
-				<section class="prose max-w-none">
+				<section class="max-w-screen-md mx-auto prose">
 					{{ page.content|raw }}
 				</section>
-				<footer>
+				<footer class="max-w-screen-md mx-auto">
 					{% if tags %}
 						<p>
 							<span>Tags:</span>
