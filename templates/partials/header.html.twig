@@ -2,7 +2,7 @@
     <div class="container">
         <a href="{{ ('' == base_url ? '/' : base_url)|e }}" title="{{ config.site.title|e }}">
             <img
-                src="{{ url('theme://images/logo-frontier-themes.png') }}"
+                src="{{ url('theme://images/logo-frontier-themes.png')|e }}"
                 alt="{{ config.site.title|e }}"
                 class="w-48 h-auto"
             >
