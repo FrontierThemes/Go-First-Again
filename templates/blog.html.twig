@@ -3,25 +3,34 @@
 {% extends "partials/base.html.twig" %}
 
 {% block content %}
+	<section class="py-6">
+		<div class="container">
+			<h1 class="text-4xl">{{ page.title|e }}</h1>
+		</div>
+	</section>
 	{% if category or tag %}
-		<section class="pt-6 pb-12">
+		<section class="py-6">
 			<div class="container">
 				{% if category and not tag %}
-					<h1 class="text-3xl">Category: {{ category|titleize|e }}</h1>
+					<h1 class="text-3xl">Category:
+						{{ category|titleize|e }}</h1>
 				{% endif %}
 
 				{% if tag and not category %}
-					<h1 class="text-3xl">Tag: {{ tag|titleize|e }}</h1>
+					<h1 class="text-3xl">Tag:
+						{{ tag|titleize|e }}</h1>
 				{% endif %}
 
 				{% if category and tag %}
-					<h1 class="text-3xl">Category: {{ category|titleize|e }}</h1>
-					<h2 class="mt-2 text-xl">Tag: {{ tag|titleize|e }}</h2>
+					<h1 class="text-3xl">Category:
+						{{ category|titleize|e }}</h1>
+					<h2 class="mt-2 text-xl">Tag:
+						{{ tag|titleize|e }}</h2>
 				{% endif %}
 			</div>
 		</section>
 	{% endif %}
-	<section class="pb-6">
+	<section class="py-6">
 		<div class="container">
 			{% if page.collection is not empty %}
 				<div class="grid gap-16 md:grid-cols-2 lg:grid-cols-3 md:gap-x-8 md:gap-y-16">
@@ -35,7 +44,7 @@
 		</div>
 	</section>
 	{% if config.plugins.pagination.enabled and page.collection.params.pagination %}
-		<section class="pt-6 pb-12">
+		<section class="py-6">
 			<div class="container">
 				{% include "partials/pagination.html.twig" with { base_url: page.url, pagination: page.collection.params.pagination } %}
 			</div>
