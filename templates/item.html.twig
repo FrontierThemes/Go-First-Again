@@ -3,9 +3,9 @@
 {% block content %}
 	{% set tags = page.taxonomy.tag %}
 	{% set categories = page.taxonomy.category %}
-	<section class="py-6 lg:py-12">
+	<section class="py-6">
 		<div class="container">
-			<article class="space-y-6">
+			<article class="space-y-6 md:space-y-10">
 				<header class="space-y-4 md:relative md:space-y-0">
 					{% if page.media.images is not empty %}
 						<figure class="md:aspect-w-16 md:aspect-h-9 md:w-3/4 md:ml-auto lg:aspect-h-7">
@@ -21,15 +21,15 @@
 						{% endif %}
 					>
 						<h1 class="text-3xl md:text-5xl lg:text-6xl">{{ page.title|e }}</h1>
-						<time class="block text-sm md:text-base" datetime="{{ page.date|date('Y-m-d H:i a') }}">
+						<time class="block text-sm text-red-500 md:text-base" datetime="{{ page.date|date('Y-m-d H:i a') }}">
 							{{ page.date|date(config.dateformat.long) }}
 						</time>
 					</div>
 				</header>
-				<section class="max-w-screen-md mx-auto prose">
+				<section class="max-w-screen-md mx-auto prose prose-a:text-red-500">
 					{{ page.content|raw }}
 				</section>
-				<footer class="max-w-screen-md mx-auto">
+				<footer class="max-w-screen-md mx-auto space-y-1">
 					{% if tags %}
 						<p>
 							<span>Tags:</span>
@@ -51,7 +51,7 @@
 						</p>
 					{% endif %}
 					<p>Written by &mdash;
-						{{ config.site.author.name }}</p>
+						{{ config.site.author.name|e }}</p>
 				</footer>
 			</article>
 		</div>
