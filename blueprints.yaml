@@ -30,3 +30,8 @@ form:
           0: PLUGIN_ADMIN.DISABLED
         validate:
           type: bool
+    custom_logo_url:
+      type: mediapicker
+      label: 'Custom Logo'
+      placeholder: 'Click to open the media picker'
+      title: 'Select an image file for the custom logo'
