@@ -1,15 +1,11 @@
 <header class="py-8">
-    <div class="container">
-    <a href="{{ ('' == base_url ? '/' : base_url)|e }}" title="{{ config.site.title|e }}" class="inline-block">
-            {% if config.theme.custom_logo_url %}
-                <img
-                    src="{{ url(config.theme.custom_logo_url)|e }}"
-                    alt="{{ config.site.title|e }}"
-                    class="w-48 h-auto"
-                >    
-            {% else %}
-                <span class="text-2xl font-bold font-heading">{{ config.site.title|e }}</span>
-            {% endif %}
-        </a>
-    </div>
+	<div class="container">
+		<a href="{{ ('' == base_url ? '/' : base_url)|e }}" title="{{ config.site.title|e }}" class="inline-block">
+			{% if config.theme.custom_logo_url %}
+				<img src="{{ url(config.theme.custom_logo_url)|e }}" alt="{{ config.site.title|e }}" class="w-48 h-auto">
+			{% else %}
+				<span class="text-2xl font-bold font-heading">{{ config.site.title|e }}</span>
+			{% endif %}
+		</a>
+	</div>
 </header>

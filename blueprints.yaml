@@ -38,5 +38,5 @@ form:
     custom_favicon_url:
       type: mediapicker
       label: 'Custom Favicon'
-      placeholder: 'Click to open the media picker'
+      placeholder: 'Click to open the media picker (recommended size 512x512 px)'
       title: 'Select an image file for the custom favicon'
