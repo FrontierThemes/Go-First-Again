@@ -1,26 +1,11 @@
 <footer class="bg-accent-500">
-	<section class="py-12">
-		<div class="container">
-			<div class="grid gap-8 md:grid-cols-3">
-				<div>
-					<h4 class="mb-4 uppercase">About</h4>
-					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores veritatis consectetur optio voluptatum debitis ipsa magni eligendi fugit laudantium. Quo.</p>
-				</div>
-				<div>
-					<h4 class="mb-4 uppercase">Tags</h4>
-					{# TODO: List tag links here #}
-				</div>
-				<div>
-					<h4 class="mb-4 uppercase">Categories</h4>
-					{# TODO: List category links here #}
-				</div>
-			</div>
-		</div>
-	</section>
 	<section class="py-4">
 		<div class="container">
 			<p class="text-sm text-center">
-				<span>{{ 'now'|date('Y')|e }} </span>
+				<span>
+					&copy;
+					{{ 'now'|date('Y')|e }}
+				</span>
 				<span class="text-red-500">{{ config.site.title|e }}</span>
 			</p>
 		</div>
