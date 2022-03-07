@@ -2,3 +2,4 @@ enabled: true
 dropdown:
   enabled: true
 custom_logo_url: null
+custom_favicon_url: null
