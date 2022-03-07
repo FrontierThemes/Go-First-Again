@@ -35,3 +35,8 @@ form:
       label: 'Custom Logo'
       placeholder: 'Click to open the media picker'
       title: 'Select an image file for the custom logo'
+    custom_favicon_url:
+      type: mediapicker
+      label: 'Custom Favicon'
+      placeholder: 'Click to open the media picker'
+      title: 'Select an image file for the custom favicon'
