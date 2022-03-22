@@ -8,7 +8,7 @@
 					<span class="text-2xl font-bold font-heading">{{ config.site.title|e }}</span>
 				{% endif %}
 			</a>
-			<button type="button" class="inline-flex text-red-500 lg:hidden">
+			<button type="button" class="inline-flex text-red-500 lg:hidden" data-controller="menu-open" data-action="click->menu-open#openMenu">
 				{{ svg_image('theme://images/icon-bars-solid.svg', 'w-6 h-6', true)|raw }}
 			</button>
 			{% include "partials/navigation.html.twig" %}

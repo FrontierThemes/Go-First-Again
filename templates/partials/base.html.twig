@@ -34,7 +34,9 @@
 			{% endif %}
 		{% endblock %}
 
-		{% block javascripts %}{% endblock %}
+		{% block javascripts %}
+			{% do assets.addJs('theme://dist/index.js', { group: 'bottom', loading: 'inline', position: 'after' }) %}
+		{% endblock %}
 
 		{% block assets deferred %}
 			{{ assets.css()|raw }}
