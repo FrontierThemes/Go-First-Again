@@ -1,21 +1,24 @@
-<div class="fixed inset-0 z-10 overflow-y-auto bg-white">
-	<header class="px-4 py-6">
-		<div class="flex items-center justify-between">
-			<a href="{{ ('' == base_url ? '/' : base_url)|e }}" title="{{ config.site.title|e }}" class="block">
-				{% if config.theme.custom_logo_url %}
-					<img src="{{ url(config.theme.custom_logo_url)|e }}" alt="{{ config.site.title|e }}" class="w-48 h-auto">
-				{% else %}
-					<span class="text-2xl font-bold font-heading">{{ config.site.title|e }}</span>
-				{% endif %}
-			</a>
-			<button type="button" class="inline-flex text-red-500">
-				{{ svg_image('theme://images/icon-xmark-solid.svg', 'w-6 h-6', true)|raw }}
-			</button>
-		</div>
-	</header>
-	<section class="px-4">
-		<nav class="mobile-menu">
-			{% include "partials/navigation.html.twig" %}
-		</nav>
-	</section>
+<div data-controller="mobilemenu" data-mobilemenu-open-value="false" data-mobilemenu-overlay-open-class="!z-[10] !opacity-100 !pointer-events-auto" data-mobilemenu-menu-container-open-class="!translate-x-0" data-action="menuopen:open-menu@window->mobilemenu#openMenu">
+	<div class="fixed inset-0 z-[-1] w-full h-full bg-black/25 transition-opacity opacity-0 pointer-events-none" data-mobilemenu-target="overlay"></div>
+	<div class="fixed inset-y-0 left-0 z-20 w-full max-w-xs overflow-y-auto transition-transform duration-300 -translate-x-full bg-white shadow-xl" data-mobilemenu-target="menuContainer" data-action="mobilemenu:click:outside->mobilemenu#handleMenuContainerClickOutside">
+		<header class="px-4 py-6">
+			<div class="flex items-center justify-between">
+				<a href="{{ ('' == base_url ? '/' : base_url)|e }}" title="{{ config.site.title|e }}" class="block">
+					{% if config.theme.custom_logo_url %}
+						<img src="{{ url(config.theme.custom_logo_url)|e }}" alt="{{ config.site.title|e }}" class="w-48 h-auto">
+					{% else %}
+						<span class="text-2xl font-bold font-heading">{{ config.site.title|e }}</span>
+					{% endif %}
+				</a>
+				<button type="button" class="inline-flex text-red-500" data-action="click->mobilemenu#closeMenu">
+					{{ svg_image('theme://images/icon-xmark-solid.svg', 'w-6 h-6', true)|raw }}
+				</button>
+			</div>
+		</header>
+		<section class="px-4">
+			<nav class="mobile-menu">
+				{% include "partials/navigation.html.twig" %}
+			</nav>
+		</section>
+	</div>
 </div>
