@@ -21,6 +21,10 @@
 }
 
 @layer components {
+    [x-cloak] {
+        @apply !hidden;
+    }
+
     .desktop-menu {
         @apply hidden lg:block;
     }
