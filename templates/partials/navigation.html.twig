@@ -1,17 +1,7 @@
-<nav class="hidden lg:block">
-    <ul class="flex items-center font-bold font-heading gap-x-8">
-        {% for p in pages.children.visible %}
-            <li>
-                <a 
-                    href="{{ p.url|e }}" 
-                    title="{{ p.title|e }}"
-                    {% if p.active %}
-                    class="block py-2 tracking-wide text-red-500 hover:text-red-500"
-                    {% else %}
-                    class="block py-2 tracking-wide text-primary-500 hover:text-red-500"    
-                    {% endif %}
-                >{{ p.title|e }}</a>
-            </li>
-        {% endfor %}
-    </ul>
-</nav>
+<ul class="font-bold font-heading">
+	{% for p in pages.children.visible %}
+		<li>
+			<a href="{{ p.url|e }}" title="{{ p.title|e }}" {% if p.active %} class="block py-2 tracking-wide text-red-500 hover:text-red-500" {% else %} class="block py-2 tracking-wide text-primary-500 hover:text-red-500" {% endif %}>{{ p.title|e }}</a>
+		</li>
+	{% endfor %}
+</ul>

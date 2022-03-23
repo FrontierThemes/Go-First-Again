@@ -19,3 +19,17 @@
         @apply text-red-500 transition-colors duration-300 hover:text-primary-500 active:text-primary-500;
     }
 }
+
+@layer components {
+    .desktop-menu {
+        @apply hidden lg:block;
+    }
+
+    .desktop-menu > ul {
+        @apply flex items-center gap-x-8;
+    }
+
+    .mobile-menu > ul {
+        @apply flex flex-col gap-y-2;
+    }
+}

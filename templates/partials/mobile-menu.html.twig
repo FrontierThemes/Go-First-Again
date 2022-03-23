@@ -1,5 +1,5 @@
-<header class="py-6">
-	<div class="container">
+<div class="fixed inset-0 z-10 overflow-y-auto bg-white">
+	<header class="px-4 py-6">
 		<div class="flex items-center justify-between">
 			<a href="{{ ('' == base_url ? '/' : base_url)|e }}" title="{{ config.site.title|e }}" class="block">
 				{% if config.theme.custom_logo_url %}
@@ -8,12 +8,14 @@
 					<span class="text-2xl font-bold font-heading">{{ config.site.title|e }}</span>
 				{% endif %}
 			</a>
-			<button type="button" class="inline-flex text-red-500 lg:hidden" data-controller="menuopen" data-action="click->menuopen#openMenu">
-				{{ svg_image('theme://images/icon-bars-solid.svg', 'w-6 h-6', true)|raw }}
+			<button type="button" class="inline-flex text-red-500">
+				{{ svg_image('theme://images/icon-xmark-solid.svg', 'w-6 h-6', true)|raw }}
 			</button>
-			<nav class="desktop-menu">
-				{% include "partials/navigation.html.twig" %}
-			</nav>
 		</div>
-	</div>
-</header>
+	</header>
+	<section class="px-4">
+		<nav class="mobile-menu">
+			{% include "partials/navigation.html.twig" %}
+		</nav>
+	</section>
+</div>
