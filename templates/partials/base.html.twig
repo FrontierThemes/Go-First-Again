@@ -34,7 +34,9 @@
 			{% endif %}
 		{% endblock %}
 
-		{% block javascripts %}{% endblock %}
+		{% block javascripts %}
+			{% do assets.addJs('theme://dist/index.js', { group: 'bottom', loading: 'defer', position: 'before' }) %}
+		{% endblock %}
 
 		{% block assets deferred %}
 			{{ assets.css()|raw }}
@@ -56,6 +58,8 @@
 		{% block footer %}
 			{% include "partials/footer.html.twig" %}
 		{% endblock %}
+
+		{% include "partials/mobile-menu.html.twig" %}
 
 		{% block bottom %}
 			{{ assets.js('bottom')|raw }}

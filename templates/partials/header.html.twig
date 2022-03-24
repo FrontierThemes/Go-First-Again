@@ -1,11 +1,24 @@
-<header class="py-8">
+<header class="py-6">
 	<div class="container">
-		<a href="{{ ('' == base_url ? '/' : base_url)|e }}" title="{{ config.site.title|e }}" class="inline-block">
-			{% if config.theme.custom_logo_url %}
-				<img src="{{ url(config.theme.custom_logo_url)|e }}" alt="{{ config.site.title|e }}" class="w-48 h-auto">
-			{% else %}
-				<span class="text-2xl font-bold font-heading">{{ config.site.title|e }}</span>
-			{% endif %}
-		</a>
+		<div class="flex items-center justify-between">
+			<a href="{{ ('' == base_url ? '/' : base_url)|e }}" title="{{ config.site.title|e }}" class="block">
+				{% if config.theme.custom_logo_url %}
+					<img src="{{ url(config.theme.custom_logo_url)|e }}" alt="{{ config.site.title|e }}" class="w-48 h-auto">
+				{% else %}
+					<span class="text-2xl font-bold font-heading">{{ config.site.title|e }}</span>
+				{% endif %}
+			</a>
+			<button 
+				type="button" 
+				class="inline-flex text-red-500 lg:hidden" 
+				x-data
+				@click="$dispatch('open-menu')"
+			>
+				{{ svg_image('theme://images/icon-bars-solid.svg', 'w-6 h-6', true)|raw }}
+			</button>
+			<nav class="desktop-menu">
+				{% include "partials/navigation.html.twig" %}
+			</nav>
+		</div>
 	</div>
 </header>
