@@ -1,8 +1,7 @@
 <div 
 	x-data="{ open: false }" 
-	x-effect="document.body.style.overflow = open ? 'hidden' : 'auto'" 
 	@resize.window.throttle.750ms="if (open && window.matchMedia('(min-width: 1024px)').matches) { open = false }"
-	@keyup.escape.window="open = false" 
+	@keydown.escape.prevent.stop="open = false" 
 	@open-menu.window="open = true"
 >
 	<div 
@@ -16,7 +15,7 @@
 		class="fixed inset-y-0 left-0 z-20 w-full max-w-xs overflow-y-auto bg-white shadow-2xl" 
 		x-cloak 
 		x-show="open"
-		x-trap="open" 
+		x-trap.noscroll="open" 
 		x-transition:enter="transition-transform duration-300" 
 		x-transition:enter-start="-translate-x-full" 
 		x-transition:enter-end="translate-x-0" 
