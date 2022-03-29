@@ -1,19 +1,21 @@
-<header class="py-6">
+<header
+	class="fixed inset-x-0 top-0 z-10 w-full py-6 transition-transform duration-500 bg-white"
+	x-data="Header"
+	:class="{ '-translate-y-full': hide, 'shadow': showShadow }"
+	@scroll.window="applyScrolledStyles">
 	<div class="container">
 		<div class="flex items-center justify-between">
 			<a href="{{ ('' == base_url ? '/' : base_url)|e }}" title="{{ config.site.title|e }}" class="block">
 				{% if config.theme.custom_logo_url %}
-					<img src="{{ url(config.theme.custom_logo_url)|e }}" alt="{{ config.site.title|e }}" class="w-48 h-auto">
+				<img src="{{ url(config.theme.custom_logo_url)|e }}" alt="{{ config.site.title|e }}" class="w-48 h-auto">
 				{% else %}
-					<span class="text-2xl font-bold font-heading">{{ config.site.title|e }}</span>
+				<span class="text-2xl font-bold font-heading">{{ config.site.title|e }}</span>
 				{% endif %}
 			</a>
-			<button 
-				type="button" 
-				class="inline-flex text-red-500 lg:hidden" 
-				x-data
-				@click="$dispatch('open-menu')"
-			>
+			<button
+				type="button"
+				class="inline-flex text-red-500 lg:hidden"
+				@click="$dispatch('open-menu')">
 				{{ svg_image('theme://images/icon-bars-solid.svg', 'w-6 h-6', true)|raw }}
 			</button>
 			<nav class="desktop-menu">
