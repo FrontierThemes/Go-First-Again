@@ -1,69 +1,72 @@
 <!DOCTYPE html>
 <html lang="{{ (grav.language.getActive ?: grav.config.site.default_lang)|e }}">
-	<head>
-		{% block head %}
-			<meta charset="utf-8"/>
-			<title>
-				{% if header.title %}
-					{{ header.title|e }}
-					|
-				{% endif %}
-				{{ site.title|e }}</title>
+<head>
+	{% block head %}
+	<meta charset="utf-8" />
+	<title>
+		{% if header.title %}
+			{{ header.title|e }}
+			|
+		{% endif %}
+		{{ site.title|e }}
+	</title>
 
-			<meta http-equiv="X-UA-Compatible" content="IE=edge">
-			<meta name="viewport" content="width=device-width, initial-scale=1">
-			{% include 'partials/metadata.html.twig' %}
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	{% include 'partials/metadata.html.twig' %}
+    
+	{% if config.theme.custom_favicon_url %}
+		<link rel="icon" type="image/png" href="{{ url(config.theme.custom_favicon_url)|e }}" />
+	{% else %}
+		<link rel="icon" type="image/png" href="{{ url('theme://images/favicon.png')|e }}" />
+	{% endif %}
 
-			{% if config.theme.custom_favicon_url %}
-				<link rel="icon" type="image/png" href="{{ url(config.theme.custom_favicon_url)|e }}"/>
-			{% else %}
-				<link rel="icon" type="image/png" href="{{ url('theme://images/favicon.png')|e }}"/>
-			{% endif %}
+	<link rel="canonical" href="{{ page.canonical(true)|e }}" />
 
-			<link rel="canonical" href="{{ page.canonical(true)|e }}"/>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Spectral:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
+	{% endblock head %}
 
-			<link rel="preconnect" href="https://fonts.googleapis.com">
-			<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-			<link href="https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Spectral:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
-		{% endblock head %}
+	{% block stylesheets %}
+		{% do assets.addCss('theme://dist/index.css', { priority: 100, loading: 'inline', position: 'before' }) %}
+		{% if config.plugins.pagination.enabled and config.plugins.pagination.built_in_css %}
+			{% do assets.addCss('theme://dist/pagination.css', { priority: 10, loading: 'inline', position: 'after' }) %}
+		{% endif %}
+	{% endblock %}
 
-		{% block stylesheets %}
-			{% do assets.addCss('theme://dist/index.css') %}
-			{% if config.plugins.pagination.enabled and config.plugins.pagination.built_in_css %}
-				{% do assets.addCss('theme://dist/pagination.css', { priority: 10, loading: 'inline', position: 'after' }) %}
-			{% endif %}
-		{% endblock %}
+	{% block javascripts %}
+		{% do assets.addJs('https://cdn.jsdelivr.net/npm/@alpinejs/focus@3.9.5/dist/cdn.min.js', { priority: 100, group: 'bottom', loading: 'defer', position: 'before' }) %}
+		{% do assets.addJs('https://cdn.jsdelivr.net/npm/alpinejs@3.9.5/dist/cdn.min.js', { priority: 99, group: 'bottom', loading: 'defer', position: 'before' }) %}
+		{% do assets.addJs('theme://dist/index.js', { priority: 98, group: 'bottom', loading: 'inline', position: 'after' }) %}
+	{% endblock %}
 
-		{% block javascripts %}
-			{% do assets.addJs('theme://dist/index.js', { group: 'bottom', loading: 'defer', position: 'before' }) %}
-		{% endblock %}
+	{% block assets deferred %}
+		{{ assets.css()|raw }}
+		{{ assets.js()|raw }}
+	{% endblock %}
+</head>
+<body class="{{ page.header.body_classes|e }}">
 
-		{% block assets deferred %}
-			{{ assets.css()|raw }}
-			{{ assets.js()|raw }}
-		{% endblock %}
-	</head>
-	<body class="{{ page.header.body_classes|e }}">
+	{% block header %}
+		{% include "partials/header.html.twig" %}
+	{% endblock %}
 
-		{% block header %}
-			{% include "partials/header.html.twig" %}
-		{% endblock %}
+	{% block body %}
+		<main>
+			{% block content %}{% endblock %}
+		</main>
+	{% endblock %}
 
-		{% block body %}
-			<main>
-				{% block content %}{% endblock %}
-			</main>
-		{% endblock %}
+	{% block footer %}
+		{% include "partials/footer.html.twig" %}
+	{% endblock %}
 
-		{% block footer %}
-			{% include "partials/footer.html.twig" %}
-		{% endblock %}
+	{% include "partials/mobile-menu.html.twig" %}
+    
+	{% block bottom %}
+		{{ assets.js('bottom')|raw }}
+	{% endblock %}
 
-		{% include "partials/mobile-menu.html.twig" %}
-
-		{% block bottom %}
-			{{ assets.js('bottom')|raw }}
-		{% endblock %}
-
-	</body>
+</body>
 </html>
