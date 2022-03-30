@@ -1,36 +1,36 @@
-<div 
-	x-data="{ open: false }" 
+<div
+	x-data="{ open: false }"
 	@resize.window.throttle.750ms="if (open && window.matchMedia('(min-width: 1024px)').matches) { open = false }"
-	@keydown.escape.prevent.stop="open = false" 
+	@keydown.escape.prevent.stop="open = false"
 	@open-menu.window="open = true"
 >
-	<div 
-		class="fixed inset-0 z-10 w-full h-full pointer-events-none bg-black/25" 
-		:class="{ '!pointer-events-auto': open }" 
-		x-cloak 
-		x-show="open" 
+	<div
+		class="fixed inset-0 z-20 w-full h-full pointer-events-none bg-black/25"
+		:class="{ '!pointer-events-auto': open }"
+		x-cloak
+		x-show="open"
 		x-transition.opacity.duration.150
 	></div>
-	<div 
-		class="fixed inset-y-0 left-0 z-20 w-full max-w-xs overflow-y-auto bg-white shadow-2xl" 
-		x-cloak 
+	<div
+		class="fixed inset-y-0 left-0 z-30 w-full max-w-xs overflow-y-auto bg-white shadow-2xl"
+		x-cloak
 		x-show="open"
-		x-trap.noscroll="open" 
-		x-transition:enter="transition-transform duration-300" 
-		x-transition:enter-start="-translate-x-full" 
-		x-transition:enter-end="translate-x-0" 
-		x-transition:leave="transition-transform duration-300" 
-		x-transition:leave-start="translate-x-0" 
-		x-transition:leave-end="-translate-x-full" 
+		x-trap.noscroll="open"
+		x-transition:enter="transition-transform duration-300"
+		x-transition:enter-start="-translate-x-full"
+		x-transition:enter-end="translate-x-0"
+		x-transition:leave="transition-transform duration-300"
+		x-transition:leave-start="translate-x-0"
+		x-transition:leave-end="-translate-x-full"
 		@click.outside="open = false"
 	>
 		<header class="px-4 py-6">
 			<div class="flex items-center justify-between">
 				<a href="{{ ('' == base_url ? '/' : base_url)|e }}" title="{{ config.site.title|e }}" class="block">
 					{% if config.theme.custom_logo_url %}
-						<img src="{{ url(config.theme.custom_logo_url)|e }}" alt="{{ config.site.title|e }}" class="w-48 h-auto">
+					<img src="{{ url(config.theme.custom_logo_url)|e }}" alt="{{ config.site.title|e }}" class="w-48 h-auto">
 					{% else %}
-						<span class="text-2xl font-bold font-heading">{{ config.site.title|e }}</span>
+					<span class="text-2xl font-bold font-heading">{{ config.site.title|e }}</span>
 					{% endif %}
 				</a>
 				<button type="button" class="inline-flex text-red-500" @click="open = false">

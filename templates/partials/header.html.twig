@@ -1,4 +1,10 @@
-<header class="py-6">
+<header 
+	class="py-6 transition-all duration-500 bg-white" 
+	x-data="Header"
+	x-init="$nextTick(() => { setFixedOrHidden() })" 
+	:class="{ 'shadow fixed top-0 inset-x-0 w-full z-10': isFixed, '-translate-y-full': isHidden }" 
+	@scroll.window="setFixedOrHidden"
+>
 	<div class="container">
 		<div class="flex items-center justify-between">
 			<a href="{{ ('' == base_url ? '/' : base_url)|e }}" title="{{ config.site.title|e }}" class="block">
@@ -11,7 +17,6 @@
 			<button 
 				type="button" 
 				class="inline-flex text-red-500 lg:hidden" 
-				x-data
 				@click="$dispatch('open-menu')"
 			>
 				{{ svg_image('theme://images/icon-bars-solid.svg', 'w-6 h-6', true)|raw }}
