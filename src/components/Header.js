@@ -17,7 +17,7 @@ export default function Header() {
          */
         setFixedOrHidden() {
             const currentScrollPosition = window.scrollY;
-            this.isFixed = currentScrollPosition > 1;
+            this.isFixed = currentScrollPosition > 0;
             this.isHidden = prevScrollPosition < currentScrollPosition;
             prevScrollPosition = currentScrollPosition;
         }
