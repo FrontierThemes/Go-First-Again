@@ -8,17 +8,17 @@ export default function Header() {
     let prevScrollPosition = window.scrollY;
 
     return {
-        hide: false,
-        showShadow: false,
+        isHidden: false,
+        isFixed: false,
         /**
-         * Applies CSS classes to the root element based on the scroll position.
+         * Sets the fixed and hidden property values according to the window scroll position.
          * 
          * @since 1.0.0
          */
-        applyScrolledStyles() {
+        setFixedOrHidden() {
             const currentScrollPosition = window.scrollY;
-            this.hide = prevScrollPosition < currentScrollPosition;
-            this.showShadow = currentScrollPosition > this.$root.offsetHeight;
+            this.isFixed = currentScrollPosition > 1;
+            this.isHidden = prevScrollPosition < currentScrollPosition;
             prevScrollPosition = currentScrollPosition;
         }
     };

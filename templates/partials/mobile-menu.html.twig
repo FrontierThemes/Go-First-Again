@@ -2,13 +2,15 @@
 	x-data="{ open: false }"
 	@resize.window.throttle.750ms="if (open && window.matchMedia('(min-width: 1024px)').matches) { open = false }"
 	@keydown.escape.prevent.stop="open = false"
-	@open-menu.window="open = true">
+	@open-menu.window="open = true"
+>
 	<div
 		class="fixed inset-0 z-20 w-full h-full pointer-events-none bg-black/25"
 		:class="{ '!pointer-events-auto': open }"
 		x-cloak
 		x-show="open"
-		x-transition.opacity.duration.150></div>
+		x-transition.opacity.duration.150
+	></div>
 	<div
 		class="fixed inset-y-0 left-0 z-30 w-full max-w-xs overflow-y-auto bg-white shadow-2xl"
 		x-cloak
@@ -20,7 +22,8 @@
 		x-transition:leave="transition-transform duration-300"
 		x-transition:leave-start="translate-x-0"
 		x-transition:leave-end="-translate-x-full"
-		@click.outside="open = false">
+		@click.outside="open = false"
+	>
 		<header class="px-4 py-6">
 			<div class="flex items-center justify-between">
 				<a href="{{ ('' == base_url ? '/' : base_url)|e }}" title="{{ config.site.title|e }}" class="block">
